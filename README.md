@@ -1,59 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BookHive
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+BookHive is a prototype Laravel-based web application for book borrowing and library management, developed as a group project for the COMP6821001 – Web Development course. It provides role-based access for administrators to manage the book catalog and for users to browse, borrow, review, and wishlist books.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Overview](#overview)
+- [Group Members](#group-members)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [User Roles](#user-roles)
+- [Getting Started](#getting-started)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+BookHive centralizes book lending operations in a single web platform. Administrators can maintain the book catalog (add, edit, delete titles), while registered users can search the catalog, borrow and return books, maintain a personal wishlist, and leave ratings and reviews for books they have read.
 
-## Learning Laravel
+## Group Members
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+| Name | Student ID |
+|---|---|
+| Jonathan Alvindo Fernandi | 2602089143 |
+| Muhammad Farras Fadhilah | 2301889685 |
+| Juan Nathan Waraney Tombeng | 2301922934 |
+| Berlianta Abdussalam | 2440098060 |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Course**: COMP6821001 – Web Development  
+**Class:** LR01 (Group 3)
 
-## Laravel Sponsors
+## Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Layer | Technology |
+|---|---|
+| Backend Framework | Laravel |
+| Database | MySQL |
+| Frontend | Blade templates |
+| Authentication | Laravel's built-in authentication scaffolding |
 
-### Premium Partners
+## Features
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Authentication
+- Register a new account (Name, Email, Password, Confirm Password).
+- Log in with "Remember me" session persistence.
+- Password reset via emailed reset link ("Forgot your password").
+- Profile management: update name/email, change password, or delete account (with password confirmation).
 
-## Contributing
+### Book Management (Admin)
+- Add a new book (Title, Author, Category, Stock).
+- Edit existing book details.
+- Delete a book from the catalog (with confirmation dialog).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Book Browsing & Borrowing (User)
+- Browse the paginated Book List with search functionality.
+- View detailed book information (Title, Author, Category, Stock) on the Show Book page.
+- Add or remove a book from a personal Wishlist.
+- Borrow a book by entering the borrower's name; borrowing records are logged in the Borrow History.
+- Return a borrowed book.
+- Submit a rating and comment as a book review, recorded in the Reviews table.
 
-## Code of Conduct
+## User Roles
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Role | Capabilities |
+|---|---|
+| **Admin** | Full book catalog management (add/edit/delete), plus all user capabilities |
+| **User** | Browse, borrow, return, wishlist, and review books; manage own profile |
 
-## Security Vulnerabilities
+Role-based access is enforced via Laravel middleware.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Getting Started
 
-## License
+### Prerequisites
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- PHP 8.1+
+- Composer
+- MySQL
+
+### Installation
+
+```bash
+git clone https://github.com/jonathanafernandi/BookHive.git
+cd BookHive
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+Configure your database credentials in `.env`, then run:
+
+```bash
+php artisan migrate --seed
+php artisan serve
+```
+
+Visit `http://localhost:8000` to access the application. Demo admin and user accounts are seeded automatically; refer to the team's internal documentation for credentials, or register a new account directly through the Register page.
